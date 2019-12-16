@@ -1,2 +1,2 @@
-# Practice
-## Add notes here
+#Class exercises
+Nothing of note here - Just doing some homework
