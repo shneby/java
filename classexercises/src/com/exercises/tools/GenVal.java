@@ -56,4 +56,14 @@ public class GenVal {
         char[] alphabet = abc.toCharArray();
         return alphabet[genInt(0, abc.length()-1)];
     }
+
+    /**
+     * Generates a random special character
+     * @return randomly generated special character
+     */
+    public char genCharSpecial(){
+        String abc = "!@#$%^&*()_+";
+        char[] alphabet = abc.toCharArray();
+        return alphabet[genInt(0, abc.length()-1)];
+    }
 }
