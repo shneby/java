@@ -4,6 +4,13 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class GenVal {
+    /**
+     * Generates a random boolean
+     * @return randomly generated boolean
+     */
+    public Boolean genBoolean(){
+        return  ThreadLocalRandom.current().nextBoolean();
+    }
 
     /**
      * Generates a random integer in a given range
