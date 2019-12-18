@@ -16,7 +16,7 @@ Contains helper classes to be used in the exercises done under the pageXX packag
 
 #### GenVal.java class
 ---
-<p>The GenVal contains 4 functions that will generate random values - see comments in GenVal</p>
+<p>The GenVal contains functions that will generate random values - see comments in GenVal</p>
 
 Usage:
 <pre><code>
