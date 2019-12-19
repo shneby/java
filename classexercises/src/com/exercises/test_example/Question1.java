@@ -39,7 +39,7 @@ public class Question1 {
         return counter;
     }
 
-    private static int[] replaceSmallestCountIndex(int[] array, int n){
+    private static void replaceSmallestCountIndex(int[] array, int n){
         int smallestCount = countEvenDigits(array[0]);
         int smallestIndex = 0;
 
@@ -53,7 +53,5 @@ public class Question1 {
         if(countEvenDigits(n) > smallestCount){
             array[smallestIndex] = n;
         }
-
-        return array;
     }
 }
