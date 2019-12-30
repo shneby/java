@@ -27,6 +27,6 @@ public class ClockDemo {
         System.out.println("secondClock:" + secondClock.toString());
 
         Clock thirdClock = firstClock.subtractClock(secondClock);
-        System.out.println("thisClock:" + thirdClock.toString());
+        System.out.println("thirdClock:" + thirdClock.toString());
     }
 }
