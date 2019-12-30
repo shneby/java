@@ -1,21 +1,29 @@
 package com.matala1;
 
+import com.matala2.Normal;
+import com.matala2.Premium;
+import com.matala2.Priority;
+
 public class AccountDemo {
     public static void main(String[] args) {
-        Account a = new Account("Az123", "omri");
-        a.setName("Omri's account");
+        Account account = new Account("Bas001", "Omri");
+        Account normal = new Normal("Nor001", "Omri");
+        Account priority = new Priority("Pri001", "Omri");
+        Account premium = new Premium("Pre001", "Omri");
 
-        System.out.println("Adding 1 credit to account:");
-        a.adjustBalance(1);
-        a.describe();
+        account.setName("Omri's base account");
+        normal.setName("Omri's normal account");
+        priority.setName("Omri's priority account");
+        premium.setName("Omri's premium account");
 
-        System.out.println("Removing 1 credit from account:");
-        a.adjustBalance(-1);
-        a.describe();
+        account.adjustBalance(100);
+        normal.adjustBalance(100);
+        priority.adjustBalance(100);
+        premium.adjustBalance(100);
 
-        System.out.println("Removing 100 credits from account:");
-        a.adjustBalance(-100);
-        a.describe();
-
+        account.describe();
+        normal.describe();
+        priority.describe();
+        premium.describe();
     }
 }
