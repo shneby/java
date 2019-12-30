@@ -18,5 +18,9 @@ public class ShapeApp {
         circle1.setRadius(4);
         circle1.draw();
 
+        Shape rectangle3 = new Rectangle(5);
+        System.out.println(rectangle3.getArea());
+        rectangle3.draw();
+
     }
 }

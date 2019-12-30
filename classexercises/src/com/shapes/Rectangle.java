@@ -7,11 +7,22 @@ public class Rectangle extends Shape {
 
     public Rectangle(){}
 
+    public Rectangle(double length){
+        this(length, length, "clear");
+    }
+
     public Rectangle(double height, double width, String color) {
         super.setShape(this.getClass().getSimpleName().toLowerCase());
         super.setColor(color);
         this.height = height;
         this.width = width;
+    }
+
+    @Override
+    public void draw() {
+        super.draw();
+        System.out.printf("Height: %d%n", (int)this.height);
+        System.out.printf("Width: %d%n", (int)this.width);
     }
 
     public double getHeight() {
