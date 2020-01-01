@@ -1,10 +1,10 @@
 package com.matala1;
 
-import com.matala2.Normal;
-import com.matala2.Premium;
-import com.matala2.Priority;
+import com.matala2Inheritance.Normal;
+import com.matala2Inheritance.Premium;
+import com.matala2Inheritance.Priority;
 
-public class AccountDemo {
+public class AccountDemoInheritance {
     public static void main(String[] args) {
         Account account = new Account("Bas001", "Omri");
         Account normal = new Normal("Nor001", "Omri");

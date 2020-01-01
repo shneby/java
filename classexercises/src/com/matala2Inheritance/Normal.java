@@ -1,4 +1,4 @@
-package com.matala2;
+package com.matala2Inheritance;
 
 import com.matala1.Account;
 
