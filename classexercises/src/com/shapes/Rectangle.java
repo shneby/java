@@ -25,6 +25,10 @@ public class Rectangle extends Shape {
         System.out.printf("Width: %d%n", (int)this.width);
     }
 
+    public boolean isSquare(){
+        return this.width == this.height;
+    }
+
     public double getHeight() {
         return height;
     }
