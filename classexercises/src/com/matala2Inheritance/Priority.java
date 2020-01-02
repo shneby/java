@@ -8,7 +8,7 @@ public class Priority extends Account {
     }
 
     @Override
-    public void adjustBalance(double amount) {
-        super.adjustBalance((amount > 0) ? amount + amount * 0.032 : amount);
+    public void deposit(double amount) {
+        super.deposit(amount * 1.032);
     }
 }

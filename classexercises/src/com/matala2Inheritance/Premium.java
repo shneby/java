@@ -8,7 +8,7 @@ public class Premium extends Account {
     }
 
     @Override
-    public void adjustBalance(double amount) {
-        super.adjustBalance((amount > 0) ? amount + amount * 0.05 : amount);
+    public void deposit(double amount) {
+        super.deposit(amount * 1.05);
     }
 }

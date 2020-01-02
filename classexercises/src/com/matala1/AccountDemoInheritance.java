@@ -16,10 +16,15 @@ public class AccountDemoInheritance {
         priority.setName("Omri's priority account");
         premium.setName("Omri's premium account");
 
-        account.adjustBalance(100);
-        normal.adjustBalance(100);
-        priority.adjustBalance(100);
-        premium.adjustBalance(100);
+        account.deposit(100);
+        normal.deposit(100);
+        priority.deposit(100);
+        premium.deposit(100);
+
+        account.withdraw(4);
+        normal.withdraw(4);
+        priority.withdraw(4);
+        premium.withdraw(4);
 
         account.describe();
         normal.describe();
