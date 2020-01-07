@@ -1,14 +1,14 @@
 package com.shapes;
 
-public class Shape {
-    private String color;
+public abstract class Shape {
+    private Color color;
     private String shape;
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 
@@ -21,14 +21,9 @@ public class Shape {
     }
 
     public void draw(){
-        System.out.printf("Imagine a %s %s%n", this.color, this.shape);
+        System.out.printf("%s %s%n", this.color, this.shape);
     }
 
-    public double getArea(){
-        return 0;
-    }
-
-    public double getCircumference(){
-        return 0;
-    }
+    public abstract double getArea();
+    public abstract double getCircumference();
 }

@@ -8,7 +8,7 @@ public class Circle extends Shape {
         super.setShape(this.getClass().getSimpleName().toLowerCase());
     }
 
-    public Circle(double radius, String color){
+    public Circle(double radius, Color color){
         super.setShape(this.getClass().getSimpleName().toLowerCase());
         super.setColor(color);
         this.radius = radius;

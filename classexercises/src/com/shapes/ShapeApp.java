@@ -2,25 +2,32 @@ package com.shapes;
 
 public class ShapeApp {
     public static void main(String[] args) {
-        Shape circle = new Circle(6, "blue");
-        Shape rectangle = new Rectangle(5, 5, "green");
+        Shape circle = new Circle(6, Color.GREEN);
+        Shape rectangle = new Rectangle(5, 5, Color.BLUE);
+        Shape triangle = new Triangle(5, 5, 5, Color.RED);
 
         circle.draw();
         rectangle.draw();
+        triangle.draw();
 
-        System.out.println(circle.getArea());
-        System.out.println(circle.getCircumference());
-        System.out.println(rectangle.getArea());
-        System.out.println(rectangle.getCircumference());
+        System.out.println(triangle.getArea());
+        System.out.println(triangle.getCircumference());
 
-        Circle circle1 = new Circle();
-        circle1.setColor("blue");
-        circle1.setRadius(4);
-        circle1.draw();
+        switch (circle.getColor()) {
+            case BLUE:
+                System.out.println("Do not be sad");
+                break;
+            case RED:
+                System.out.println("I guess it's that time of the month");
+                break;
+            case GREEN:
+                System.out.println("This is sprint");
+                break;
+        }
 
-        Shape rectangle3 = new Rectangle(5);
-        System.out.println(rectangle3.getArea());
-        rectangle3.draw();
+        for(Color color: Color.values()){
+            System.out.println(color);
+        }
 
     }
 }

@@ -8,21 +8,14 @@ public class Rectangle extends Shape {
     public Rectangle(){}
 
     public Rectangle(double length){
-        this(length, length, "clear");
+        this(length, length, Color.GREEN);
     }
 
-    public Rectangle(double height, double width, String color) {
+    public Rectangle(double height, double width, Color color) {
         super.setShape(this.getClass().getSimpleName().toLowerCase());
         super.setColor(color);
         this.height = height;
         this.width = width;
-    }
-
-    @Override
-    public void draw() {
-        super.draw();
-        System.out.printf("Height: %d%n", (int)this.height);
-        System.out.printf("Width: %d%n", (int)this.width);
     }
 
     public boolean isSquare(){
@@ -49,7 +42,6 @@ public class Rectangle extends Shape {
     public double getArea() {
         return height * width;
     }
-
     @Override
     public double getCircumference() {
         return height * 2 + width * 2;
