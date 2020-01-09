@@ -1,4 +1,6 @@
-package com.foomix;
+package com.foomix.model;
+
+import com.foomix.model.game.Game;
 
 import java.util.ArrayList;
 import java.util.Arrays;

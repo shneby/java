@@ -1,5 +1,8 @@
 package com.foomix;
 
+import com.foomix.model.MarketPlace;
+import com.foomix.model.User;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

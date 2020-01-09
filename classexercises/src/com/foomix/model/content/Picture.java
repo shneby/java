@@ -1,4 +1,4 @@
-package com.foomix;
+package com.foomix.model.content;
 
 import java.util.Date;
 

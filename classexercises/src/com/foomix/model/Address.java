@@ -1,4 +1,4 @@
-package com.foomix;
+package com.foomix.model;
 
 import java.util.Objects;
 

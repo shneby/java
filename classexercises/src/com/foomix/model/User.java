@@ -1,4 +1,7 @@
-package com.foomix;
+package com.foomix.model;
+
+import com.foomix.model.content.Content;
+import com.foomix.model.content.ProfilePicture;
 
 import java.util.*;
 
