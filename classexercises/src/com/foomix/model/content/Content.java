@@ -1,9 +1,11 @@
 package com.foomix.model.content;
 
+//todo: make abstract
+
 import java.util.Date;
 import java.util.Objects;
 
-public class Content {
+public abstract class Content {
     private Date timeAdded;
 
     public Content(Date timeAdded) {
