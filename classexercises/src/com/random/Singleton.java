@@ -1,7 +1,7 @@
 package com.random;
 
 public class Singleton {
-    private static Singleton instance = null;
+    private static Singleton instance;
     private int access = 0;
 
     private Singleton() {}

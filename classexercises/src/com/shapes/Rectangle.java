@@ -12,7 +12,7 @@ public class Rectangle extends Shape {
     }
 
     public Rectangle(double height, double width, Color color) {
-        super.setShape(this.getClass().getSimpleName().toLowerCase());
+        super("rectangle");
         super.setColor(color);
         this.height = height;
         this.width = width;

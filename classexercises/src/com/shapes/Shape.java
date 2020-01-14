@@ -1,8 +1,37 @@
 package com.shapes;
 
-public abstract class Shape {
+public abstract class Shape implements WithName {
     private Color color;
-    private String shape;
+    private String name;
+    private static double counter;
+
+    static{
+        counter = Math.random();
+        System.out.println(counter);
+    }
+
+    public Shape(){}
+
+    public Shape(String name){
+        this.name = name;
+    }
+
+    @Override
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public static double getCounter() {
+        return counter;
+    }
+
+    public static void setCounter(double counter) {
+        Shape.counter = counter;
+    }
 
     public Color getColor() {
         return color;
@@ -12,16 +41,8 @@ public abstract class Shape {
         this.color = color;
     }
 
-    public void setShape(String shape) {
-        this.shape = shape;
-    }
-
-    public String getShape() {
-        return shape;
-    }
-
     public void draw(){
-        System.out.printf("%s %s%n", this.color, this.shape);
+        System.out.printf("%s %n", this.color);
     }
 
     public abstract double getArea();

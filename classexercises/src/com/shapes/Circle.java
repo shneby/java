@@ -4,12 +4,8 @@ public class Circle extends Shape {
 
     private double radius;
 
-    public Circle(){
-        super.setShape(this.getClass().getSimpleName().toLowerCase());
-    }
-
     public Circle(double radius, Color color){
-        super.setShape(this.getClass().getSimpleName().toLowerCase());
+        super("circle");
         super.setColor(color);
         this.radius = radius;
     }
