@@ -1,4 +1,4 @@
-package com.shapes;
+package com.shapes.inheritance;
 
 public enum Color {
     RED(620, 750, "red"),

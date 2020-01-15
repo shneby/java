@@ -1,4 +1,4 @@
-package com.shapes;
+package com.shapes.inheritance;
 
 public class ShapeApp {
     public static void main(String[] args) {

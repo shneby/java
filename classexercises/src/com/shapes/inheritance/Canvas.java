@@ -1,4 +1,4 @@
-package com.shapes;
+package com.shapes.inheritance;
 
 public class Canvas {
     public void printDetails(WithName s){

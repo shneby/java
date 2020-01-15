@@ -1,4 +1,4 @@
-package com.shapes;
+package com.shapes.inheritance;
 
 public class CanvasDemo {
     public static void main(String[] args) {

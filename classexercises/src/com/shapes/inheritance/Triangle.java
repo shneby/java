@@ -1,4 +1,4 @@
-package com.shapes;
+package com.shapes.inheritance;
 
 public class Triangle extends Shape {
     private double a;

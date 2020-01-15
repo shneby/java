@@ -1,4 +1,4 @@
-package com.shapes;
+package com.shapes.inheritance;
 
 public abstract class Shape implements WithName {
     private Color color;
