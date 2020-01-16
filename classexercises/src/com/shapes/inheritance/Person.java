@@ -1,4 +1,4 @@
-package com.shapes;
+package com.shapes.inheritance;
 
 public class Person implements WithName {
     private String name;
