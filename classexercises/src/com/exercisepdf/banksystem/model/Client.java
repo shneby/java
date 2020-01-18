@@ -2,8 +2,8 @@ package com.exercisepdf.banksystem.model;
 
 import java.util.ArrayList;
 import java.util.Objects;
-import com.exercisepdf.banksystem.model.clientexceptions.AccountAlreadyAddedException;
-import com.exercisepdf.banksystem.model.clientexceptions.AccountNotFoundException;
+import com.exercisepdf.banksystem.exceptions.AccountAlreadyAddedException;
+import com.exercisepdf.banksystem.exceptions.AccountNotFoundException;
 
 public class Client {
     private int id;
@@ -25,15 +25,14 @@ public class Client {
 
     public void addAccount(Account account) throws AccountAlreadyAddedException {
         boolean foundAccount = false;
-        int id = account.getId();
         for(Account acc: this.accounts){
-            if(id == acc.getId()){
+            if(account.equals(acc)){
                 foundAccount = true;
                 break;
             }
         }
         if(foundAccount){
-            throw new AccountAlreadyAddedException(id);
+            throw new AccountAlreadyAddedException(account.getId());
         } else {
             this.accounts.add(account);
             logger.log(new Log(this.id, String.format("client update - added account %d to accounts", id), 0f));
@@ -41,7 +40,6 @@ public class Client {
     }
 
     public void removeAccount(int id) throws AccountNotFoundException {
-        boolean foundAccount = false;
         Account account = null;
         for(Account acc: this.accounts){
             if(id == acc.getId()){
