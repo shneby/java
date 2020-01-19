@@ -1,15 +1,16 @@
 package com.exercisepdf.banksystem.model;
 
 import java.util.Objects;
+import java.util.Date;
 
 public class Log {
-    private long timesStamp;
-    private int clientId;
+    private Date timesStamp;
+    private Integer clientId;
     private String description;
-    private float amount;
+    private Float amount;
 
-    public Log(int clientId, String description, float amount) {
-        this.timesStamp = System.currentTimeMillis();
+    public Log(Integer clientId, String description, Float amount) {
+        this.timesStamp = new Date();
         this.clientId = clientId;
         this.description = description;
         this.amount = amount;
@@ -18,7 +19,7 @@ public class Log {
 
     @Override
     public String toString(){
-        return String.format("%d, client-%d, %s, %f", this.timesStamp, this.clientId, this.description, this.amount);
+        return String.format("%s, client-%d, %s, %f", this.timesStamp, this.clientId, this.description, this.amount);
     }
 
     @Override
@@ -26,13 +27,12 @@ public class Log {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Log log = (Log) o;
-        return timesStamp == log.timesStamp &&
-                clientId == log.clientId &&
-                Float.compare(log.amount, amount) == 0;
+        return Objects.equals(timesStamp, log.timesStamp) &&
+                Objects.equals(clientId, log.clientId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(timesStamp, clientId, amount);
+        return Objects.hash(timesStamp, clientId);
     }
 }

@@ -1,7 +1,7 @@
 package com.exercisepdf.banksystem.model;
 
 public class Regular extends Client{
-    public Regular(int id, String name, float balance) {
+    public Regular(Integer id, String name, Float balance) {
         super(id, name, balance, 0.03f, 0.001f);
     }
 

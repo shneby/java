@@ -1,9 +1,9 @@
 package com.exercisepdf.banksystem.model.exceptions;
 
 public class AccountAlreadyAddedException extends Exception{
-    private int id;
+    private Integer id;
 
-    public AccountAlreadyAddedException(int id) {
+    public AccountAlreadyAddedException(Integer id) {
         this.id = id;
     }
 

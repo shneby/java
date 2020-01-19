@@ -4,17 +4,18 @@ import java.util.ArrayList;
 import java.util.Objects;
 import com.exercisepdf.banksystem.model.exceptions.AccountAlreadyAddedException;
 import com.exercisepdf.banksystem.model.exceptions.AccountNotFoundException;
+import com.exercisepdf.banksystem.model.exceptions.WithdrawException;
 
 public abstract class Client {
-    private int id;
+    private Integer id;
     private String name;
-    private float balance;
+    private Float balance;
     private ArrayList<Account> accounts;
-    protected final float commissionRate;
-    protected final float interestRate;
+    protected final Float commissionRate;
+    protected final Float interestRate;
 
 
-    public Client(int id, String name, float balance, float commissionRate, float interestRate) {
+    public Client(Integer id, String name, Float balance, Float commissionRate, Float interestRate) {
         this.id = id;
         this.name = name;
         this.balance = balance;
@@ -57,7 +58,7 @@ public abstract class Client {
         }
     }
 
-    public Account getAccount(int id){
+    public Account getAccount(Integer id){
         Account account = null;
         for(Account acc: this.accounts){
             if(id == acc.getId()){
@@ -67,15 +68,19 @@ public abstract class Client {
         return account;
     }
 
-    public void deposit(float amount){
-        float commission = amount * this.commissionRate;
+    public void deposit(Float amount){
+        Float commission = amount * this.commissionRate;
         this.balance += (amount - commission);
         Bank.updateTotalCommission(commission);
     }
 
-    public void withdraw(float amount){
-        float commission = amount * this.commissionRate;
-        this.balance -= (amount + commission);
+    public void withdraw(Float amount) throws WithdrawException {
+        Float commission = amount * this.commissionRate;
+        Float total = amount + commission;
+        if(this.balance - total < 0){
+            throw new WithdrawException("Cannot withdraw - balance too low", this.id, this.balance, total);
+        }
+        this.balance -= total;
         Bank.updateTotalCommission(commission);
     }
 
@@ -113,7 +118,7 @@ public abstract class Client {
         this.name = name;
     }
 
-    public void setBalance(float balance) {
+    public void setBalance(Float balance) {
         this.balance = balance;
     }
 
@@ -131,7 +136,7 @@ public abstract class Client {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Client client = (Client) o;
-        return id == client.id;
+        return Objects.equals(id, client.id);
     }
 
     @Override

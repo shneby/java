@@ -1,9 +1,9 @@
 package com.exercisepdf.banksystem.model.exceptions;
 
 public class ClientNotFoundException extends Exception {
-    private int id;
+    private Integer id;
 
-    public ClientNotFoundException(int id) {
+    public ClientNotFoundException(Integer id) {
         this.id = id;
     }
 

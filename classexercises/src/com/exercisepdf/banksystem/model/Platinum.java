@@ -1,7 +1,7 @@
 package com.exercisepdf.banksystem.model;
 
 public class Platinum extends Client {
-    public Platinum(int id, String name, float balance) {
+    public Platinum(Integer id, String name, Float balance) {
         super(id, name, balance, 0.01f, 0.005f);
     }
 

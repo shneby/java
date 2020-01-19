@@ -8,9 +8,8 @@ import java.util.Objects;
 
 public class Bank {
     private static Bank instance;
-    private static float totalCommissons = 0;
-
-    ArrayList<Client> clients;
+    private static Float totalCommissons = 0f;
+    private ArrayList<Client> clients;
 
     private Bank(){
         this.clients = new ArrayList<>();
@@ -39,7 +38,7 @@ public class Bank {
         int id = client.getId();
         boolean clientFound = false;
         for(Client cli: this.clients){
-            if(client.getId() == id){
+            if(cli.equals(client)){
                 clientFound = true;
                 break;
             }

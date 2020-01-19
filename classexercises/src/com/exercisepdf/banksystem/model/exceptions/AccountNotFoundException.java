@@ -1,9 +1,9 @@
 package com.exercisepdf.banksystem.model.exceptions;
 
 public class AccountNotFoundException extends Exception {
-    private int id;
+    private Integer id;
 
-    public AccountNotFoundException(int id) {
+    public AccountNotFoundException(Integer id) {
         this.id = id;
     }
 

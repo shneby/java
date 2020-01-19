@@ -1,4 +1,4 @@
-package com.interfaces;
+package com.interfaces.shapes;
 
 import java.util.ArrayList;
 import java.util.List;

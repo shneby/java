@@ -1,9 +1,9 @@
 package com.exercisepdf.banksystem.model.exceptions;
 
 public class ClientAlreadyAddedException extends Exception{
-    private int id;
+    private Integer id;
 
-    public ClientAlreadyAddedException(int id) {
+    public ClientAlreadyAddedException(Integer id) {
         this.id = id;
     }
 

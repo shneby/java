@@ -1,7 +1,7 @@
 package com.exercisepdf.banksystem.model;
 
 public class Gold extends Client {
-    public Gold(int id, String name, float balance) {
+    public Gold(Integer id, String name, Float balance) {
         super(id, name, balance, 0.02f, 0.003f);
     }
 
