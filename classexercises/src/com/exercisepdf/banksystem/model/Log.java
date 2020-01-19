@@ -15,18 +15,10 @@ public class Log {
         this.amount = amount;
     }
 
-    public String getData(){
-        return String.format("%d, client-%d, %s, %f", this.timesStamp, this.clientId, this.description, this.amount);
-    }
 
     @Override
-    public String toString() {
-        return "Log{" +
-                "timesStamp=" + timesStamp +
-                ", clientId=" + clientId +
-                ", description='" + description + '\'' +
-                ", amount=" + amount +
-                '}';
+    public String toString(){
+        return String.format("%d, client-%d, %s, %f", this.timesStamp, this.clientId, this.description, this.amount);
     }
 
     @Override

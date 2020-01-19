@@ -2,32 +2,31 @@ package com.exercisepdf.banksystem.model;
 
 import java.util.ArrayList;
 import java.util.Objects;
-import com.exercisepdf.banksystem.model.clientexceptions.AccountAlreadyAddedException;
-import com.exercisepdf.banksystem.model.clientexceptions.AccountNotFoundException;
+import com.exercisepdf.banksystem.model.exceptions.AccountAlreadyAddedException;
+import com.exercisepdf.banksystem.model.exceptions.AccountNotFoundException;
 
-public class Client {
+public abstract class Client {
     private int id;
     private String name;
     private float balance;
     private ArrayList<Account> accounts;
-    private float commissionRate = 0;
-    private float interestRate = 0;
-    private Logger logger;
+    protected final float commissionRate;
+    protected final float interestRate;
 
 
-    public Client(int id, String name, float balance) {
+    public Client(int id, String name, float balance, float commissionRate, float interestRate) {
         this.id = id;
         this.name = name;
         this.balance = balance;
+        this.commissionRate = commissionRate;
+        this.interestRate = interestRate;
         this.accounts = new ArrayList<>();
-        this.logger = new Logger("");
     }
 
     public void addAccount(Account account) throws AccountAlreadyAddedException {
         boolean foundAccount = false;
-        int id = account.getId();
         for(Account acc: this.accounts){
-            if(id == acc.getId()){
+            if(acc.equals(account)){
                 foundAccount = true;
                 break;
             }
@@ -36,24 +35,25 @@ public class Client {
             throw new AccountAlreadyAddedException(id);
         } else {
             this.accounts.add(account);
-            logger.log(new Log(this.id, String.format("client update - added account %d to accounts", id), 0f));
+            Logger.log(new Log(this.id, String.format("client update - added account %d to accounts", account.getId()), 0f));
         }
     }
 
-    public void removeAccount(int id) throws AccountNotFoundException {
+    public void removeAccount(Account account) throws AccountNotFoundException {
         boolean foundAccount = false;
-        Account account = null;
         for(Account acc: this.accounts){
-            if(id == acc.getId()){
-                account = acc;
+            if(acc.equals(account)){
+                foundAccount = true;
                 break;
             }
         }
-        if(account == null){
-            throw new AccountNotFoundException(id);
-        } else {
+        if(foundAccount){
+            this.balance += account.getBalance();
             this.accounts.remove(account);
-            logger.log(new Log(this.id, String.format("client update - removed account %d from accounts", id), 0f));
+            Logger.log(new Log(this.id, String.format("client update - removed account %d from accounts", account.getId()), 0f));
+
+        } else {
+            throw new AccountNotFoundException(id);
         }
     }
 
@@ -68,11 +68,15 @@ public class Client {
     }
 
     public void deposit(float amount){
-        this.balance += (amount - this.commissionRate);
+        float commission = amount * this.commissionRate;
+        this.balance += (amount - commission);
+        Bank.updateTotalCommission(commission);
     }
 
     public void withdraw(float amount){
-        this.balance += (amount + this.commissionRate);
+        float commission = amount * this.commissionRate;
+        this.balance -= (amount + commission);
+        Bank.updateTotalCommission(commission);
     }
 
     public void autoUpdateAccounts(){

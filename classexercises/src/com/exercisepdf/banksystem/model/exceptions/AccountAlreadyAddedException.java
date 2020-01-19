@@ -1,4 +1,4 @@
-package com.exercisepdf.banksystem.model.clientexceptions;
+package com.exercisepdf.banksystem.model.exceptions;
 
 public class AccountAlreadyAddedException extends Exception{
     private int id;

@@ -7,8 +7,8 @@ public class Logger {
         this.driverName = driverName;
     }
 
-    public void log(Log log){
-        System.out.println(log.getData());
+    public static void log(Log log){
+        System.out.println(log);
     }
 
     // todo: implement getLogs() method when the time comes

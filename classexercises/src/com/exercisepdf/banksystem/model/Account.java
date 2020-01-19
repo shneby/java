@@ -36,12 +36,11 @@ public class Account {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
-        return id == account.id &&
-                Float.compare(account.balance, balance) == 0;
+        return id == account.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, balance);
+        return Objects.hash(id);
     }
 }
