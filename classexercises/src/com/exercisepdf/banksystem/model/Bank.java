@@ -3,6 +3,7 @@ package com.exercisepdf.banksystem.model;
 import com.exercisepdf.banksystem.model.exceptions.ClientAlreadyAddedException;
 import com.exercisepdf.banksystem.model.exceptions.ClientNotFoundException;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -12,7 +13,7 @@ public class Bank {
     private ArrayList<Client> clients;
 
     private Bank(){
-        this.clients = new ArrayList<>();
+        this.clients = load();
     }
 
     public static Bank getBankInstance(){
@@ -73,6 +74,33 @@ public class Bank {
     public void printClientList(){
         for(Client client: this.clients){
             System.out.println(client);
+        }
+    }
+
+    public void store(){
+        try {
+            FileOutputStream fileOut = new FileOutputStream("bank.data");
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(this.clients);
+            objectOut.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        Logger.log(new Log(0, "bank [store] - clients saved to bank.data", 0f));
+    }
+
+    private ArrayList<Client> load(){
+        try {
+            FileInputStream fileIn = new FileInputStream("bank.data");
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+            // todo: need to figure out how to used checkedList here
+            ArrayList<Client> obj = (ArrayList<Client>)objectIn.readObject();
+            objectIn.close();
+            Logger.log(new Log(0, "bank [load] - clients loaded from bank.data", 0f));
+            return obj;
+        } catch (Exception ex) {
+            Logger.log(new Log(0, "bank [load] - Failed to load clients from bank.data", 0f));
+            return new ArrayList<>();
         }
     }
 
