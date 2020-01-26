@@ -7,9 +7,10 @@ import java.util.Objects;
 
 public class BullsEye {
     private ArrayList<Character> board;
-    private int boardSize = 3;
+    private int boardSize;
 
-    public BullsEye() {
+    public BullsEye(int boardSize) {
+        this.boardSize = boardSize;
         this.board = new ArrayList<>();
         this.generateGameBoard();
     }

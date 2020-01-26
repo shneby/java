@@ -4,14 +4,14 @@ import java.util.Scanner;
 
 public class BullsEyeApp {
     public static void main(String[] args) {
-        BullsEye bullsEye = new BullsEye();
+        BullsEye bullsEye = new BullsEye(5);
         Scanner keyboard = new Scanner(System.in);
         boolean gameOn = true;
 
         System.out.println("Started a new game of Bullseye.");
         while(gameOn){
             char[] guess = new char[bullsEye.getBoardSize()];
-            System.out.println("Enter 3 characters [b,y,r,g,o] to make a guess (x leaves the game):");
+            System.out.printf("Enter %d characters [b,y,r,g,o] to make a guess (x leaves the game):\n", guess.length);
             for(int i=0; i<guess.length; i++){
                 guess[i] = keyboard.next().charAt(0);
                 if(guess[i] == 'x'){
