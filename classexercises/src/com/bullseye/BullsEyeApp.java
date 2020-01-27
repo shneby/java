@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class BullsEyeApp {
     public static void main(String[] args) {
-        BullsEye bullsEye = new BullsEye(5);
+        BullsEye bullsEye = new BullsEye(3);
         Scanner keyboard = new Scanner(System.in);
         boolean gameOn = true;
 

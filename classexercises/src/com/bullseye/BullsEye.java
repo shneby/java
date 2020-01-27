@@ -8,9 +8,11 @@ import java.util.Objects;
 public class BullsEye {
     private ArrayList<Character> board;
     private int boardSize;
+    private int guessCount;
 
     public BullsEye(int boardSize) {
         this.boardSize = boardSize;
+        this.guessCount = 0;
         this.board = new ArrayList<>();
         this.generateGameBoard();
     }
@@ -37,6 +39,7 @@ public class BullsEye {
     public boolean makeGuess(char[] guess){
         boolean correct = true;
         char[] displayGuess = new char[boardSize];
+        this.guessCount ++;
 
         for(int i=0; i<boardSize; i++){
             displayGuess[i] = checkSingleGuess(guess[i], i);
@@ -47,12 +50,12 @@ public class BullsEye {
                 break;
             }
         }
+        System.out.println(Arrays.toString(displayGuess));
         if(correct){
-            System.out.println("Bullseye!!!");
+            System.out.printf("Bullseye in %d guesses\n", this.guessCount);
         } else {
             System.out.println("Keep trying!");
         }
-        System.out.println(Arrays.toString(displayGuess));
         return correct;
     }
 
