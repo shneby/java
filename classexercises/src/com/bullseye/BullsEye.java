@@ -26,8 +26,8 @@ public class BullsEye {
         }
     }
 
-    private char checkSingleGuess(char singleGuess, int index){
-        if (board.get(index) == singleGuess){
+    private char checkSingleGuess(Character singleGuess, int index){
+        if (board.get(index).equals(singleGuess)){
             return 'X';
         } else if (board.contains(singleGuess)) {
             return 'O';
@@ -36,9 +36,9 @@ public class BullsEye {
         }
     }
 
-    public boolean makeGuess(char[] guess){
+    public boolean makeGuess(Character[] guess){
         boolean correct = true;
-        char[] displayGuess = new char[boardSize];
+        Character[] displayGuess = new Character[boardSize];
         this.guessCount ++;
 
         for(int i=0; i<boardSize; i++){
