@@ -19,8 +19,9 @@ public class BullsEye {
 
     private void generateGameBoard(){
         ArrayList<Character> options = new ArrayList<>(List.of('b', 'y', 'r', 'g', 'o'));
+        int randomSelect;
         for(int i=0; i<boardSize; i++){
-            int randomSelect = (int)(Math.random()*options.size());
+            randomSelect = (int)(Math.random()*options.size());
             board.add(i, options.get(randomSelect));
             options.remove(randomSelect);
         }
