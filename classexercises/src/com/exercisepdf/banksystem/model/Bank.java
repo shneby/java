@@ -36,24 +36,16 @@ public class Bank {
 
     public void addClient(Client client) throws ClientAlreadyAddedException {
         int id = client.getId();
-        boolean clientFound = false;
-        for(Client cli: this.clients){
-            if(cli.equals(client)){
-                clientFound = true;
-                break;
-            }
-        }
-        if(clientFound){
+        if(clients.contains(client)){
             throw new ClientAlreadyAddedException(id);
-        } else {
-            this.clients.add(client);
-            Logger.log(new Log(id, String.format("bank [add] - added client %d", id), 0f));
         }
+        this.clients.add(client);
+        Logger.log(new Log(id, String.format("bank [add] - added client %d", id), 0f));
     }
 
     public void removeClient(Client client){
         int id = client.getId();
-        this.clients.remove(client);
+        clients.remove(client);
         Logger.log(new Log(id, String.format("bank [remove] - removed client %d", id), 0f));
     }
 

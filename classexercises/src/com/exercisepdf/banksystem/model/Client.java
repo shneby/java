@@ -25,14 +25,7 @@ public abstract class Client {
     }
 
     public void addAccount(Account account) throws AccountAlreadyAddedException {
-        boolean foundAccount = false;
-        for(Account acc: this.accounts){
-            if(acc.equals(account)){
-                foundAccount = true;
-                break;
-            }
-        }
-        if(foundAccount){
+        if(accounts.contains(account)){
             throw new AccountAlreadyAddedException(id);
         } else {
             this.accounts.add(account);
@@ -41,18 +34,10 @@ public abstract class Client {
     }
 
     public void removeAccount(Account account) throws AccountNotFoundException {
-        boolean foundAccount = false;
-        for(Account acc: this.accounts){
-            if(acc.equals(account)){
-                foundAccount = true;
-                break;
-            }
-        }
-        if(foundAccount){
-            this.balance += account.getBalance();
-            this.accounts.remove(account);
-            Logger.log(new Log(this.id, String.format("client update - removed account %d from accounts", account.getId()), 0f));
-
+        if(accounts.contains(account)){
+            balance += account.getBalance();
+            accounts.remove(account);
+            Logger.log(new Log(id, String.format("client update - removed account %d from accounts", account.getId()), 0f));
         } else {
             throw new AccountNotFoundException(id);
         }
@@ -69,13 +54,13 @@ public abstract class Client {
     }
 
     public void deposit(Float amount){
-        Float commission = amount * this.commissionRate;
+        float commission = amount * this.commissionRate;
         this.balance += (amount - commission);
         Bank.updateTotalCommission(commission);
     }
 
     public void withdraw(Float amount) throws WithdrawException {
-        Float commission = amount * this.commissionRate;
+        float commission = amount * this.commissionRate;
         Float total = amount + commission;
         if(this.balance - total < 0){
             throw new WithdrawException("Cannot withdraw - balance too low", this.id, this.balance, total);
@@ -85,14 +70,14 @@ public abstract class Client {
     }
 
     public void autoUpdateAccounts(){
-        for(Account acc: this.accounts){
-            acc.setBalance(acc.getBalance() * this.interestRate);
+        for(Account acc: accounts){
+            acc.setBalance(acc.getBalance() * interestRate);
         }
     }
 
     public float getFortune(){
-        float grandTotal = this.balance;
-        for(Account acc: this.accounts){
+        float grandTotal = balance;
+        for(Account acc: accounts){
             grandTotal += acc.getBalance();
         }
         return grandTotal;
