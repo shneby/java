@@ -1,18 +1,20 @@
 package com.main;
 
 import java.io.*;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args){
-//        ArrayList<Integer> integerArray = new ArrayList<>();
-//        String fileName = "data.dat";
-//        integerArray.add(5);
-//        writeToFile(integerArray, fileName);
-//        ArrayList<Integer> integerArray2 = readFromFile(fileName);
-//        for(Integer i: integerArray2){
-//            System.out.println(i);
-//        }
+        Set<Integer> set = new HashSet<>(Arrays.asList(1,2,3,3,3,3,4,5,6,7,8,9));
+        System.out.println("*****************************");
+        for(Integer element: set){
+            System.out.println(element);
+        }
+        System.out.println("*****************************");
+        Iterator<Integer> itr = set.iterator();
+        while(itr.hasNext()){
+            System.out.println(itr.next());
+        }
     }
 
     private static void th() throws Exception{
