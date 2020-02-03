@@ -1,8 +1,9 @@
 package com.exercisepdf.banksystem.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Account {
+public class Account implements Serializable {
     private Integer id;
     private Float balance;
 

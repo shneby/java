@@ -1,12 +1,13 @@
 package com.exercisepdf.banksystem.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 import com.exercisepdf.banksystem.model.exceptions.AccountAlreadyAddedException;
 import com.exercisepdf.banksystem.model.exceptions.AccountNotFoundException;
 import com.exercisepdf.banksystem.model.exceptions.WithdrawException;
 
-public abstract class Client {
+public abstract class Client implements Serializable {
     private Integer id;
     private String name;
     private Float balance;
@@ -46,7 +47,7 @@ public abstract class Client {
     public Account getAccount(Integer id){
         Account account = null;
         for(Account acc: this.accounts){
-            if(id == acc.getId()){
+            if(id.equals(acc.getId())){
                 account = acc;
             }
         }
