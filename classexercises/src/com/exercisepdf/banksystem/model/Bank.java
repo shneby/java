@@ -3,7 +3,10 @@ package com.exercisepdf.banksystem.model;
 import com.exercisepdf.banksystem.model.exceptions.ClientAlreadyAddedException;
 import com.exercisepdf.banksystem.model.exceptions.ClientNotFoundException;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -13,7 +16,12 @@ public class Bank {
     private ArrayList<Client> clients;
 
     private Bank(){
-        this.clients = load();
+        try{
+            load();
+        } catch (Exception ex){
+            Logger.log(new Log(0, "bank [load] - unable to load state from bank.data", 0f));
+            this.clients = new ArrayList<>();
+        }
     }
 
     public static Bank getBankInstance(){
@@ -37,24 +45,36 @@ public class Bank {
 
     public void addClient(Client client) throws ClientAlreadyAddedException {
         int id = client.getId();
-        boolean clientFound = false;
-        for(Client cli: this.clients){
-            if(cli.equals(client)){
-                clientFound = true;
-                break;
-            }
-        }
-        if(clientFound){
+        if(clients.contains(client)){
             throw new ClientAlreadyAddedException(id);
-        } else {
-            this.clients.add(client);
-            Logger.log(new Log(id, String.format("bank [add] - added client %d", id), 0f));
         }
+        this.clients.add(client);
+        Logger.log(new Log(id, String.format("bank [add] - added client %d", id), 0f));
+    }
+
+    public void store(){
+        try{
+            FileOutputStream fileOut = new FileOutputStream("bank.data");
+            ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
+            objOut.writeObject(this.clients);
+            objOut.close();
+            Logger.log(new Log(0, "bank [save] - saved state to bank.data", 0f));
+        } catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    @SuppressWarnings("unchecked")
+    public void load() throws Exception{
+        FileInputStream fileIn = new FileInputStream("bank.data");
+        ObjectInputStream objIn = new ObjectInputStream(fileIn);
+        this.clients = (ArrayList<Client>) objIn.readObject();
+        Logger.log(new Log(0, "bank [load] - loaded bank state from bank.data", 0f));
+        objIn.close();
     }
 
     public void removeClient(Client client){
         int id = client.getId();
-        this.clients.remove(client);
+        clients.remove(client);
         Logger.log(new Log(id, String.format("bank [remove] - removed client %d", id), 0f));
     }
 
@@ -74,33 +94,6 @@ public class Bank {
     public void printClientList(){
         for(Client client: this.clients){
             System.out.println(client);
-        }
-    }
-
-    public void store(){
-        try {
-            FileOutputStream fileOut = new FileOutputStream("bank.data");
-            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-            objectOut.writeObject(this.clients);
-            objectOut.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        Logger.log(new Log(0, "bank [store] - clients saved to bank.data", 0f));
-    }
-
-    private ArrayList<Client> load(){
-        try {
-            FileInputStream fileIn = new FileInputStream("bank.data");
-            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
-            // todo: need to figure out how to used checkedList here
-            ArrayList<Client> obj = (ArrayList<Client>)objectIn.readObject();
-            objectIn.close();
-            Logger.log(new Log(0, "bank [load] - clients loaded from bank.data", 0f));
-            return obj;
-        } catch (Exception ex) {
-            Logger.log(new Log(0, "bank [load] - Failed to load clients from bank.data", 0f));
-            return new ArrayList<>();
         }
     }
 
