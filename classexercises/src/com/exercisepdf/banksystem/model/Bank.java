@@ -64,7 +64,7 @@ public class Bank {
         }
     }
     @SuppressWarnings("unchecked")
-    public void load() throws Exception{
+    private void load() throws Exception{
         FileInputStream fileIn = new FileInputStream("bank.data");
         ObjectInputStream objIn = new ObjectInputStream(fileIn);
         this.clients = (ArrayList<Client>) objIn.readObject();
