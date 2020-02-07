@@ -3,8 +3,6 @@ package com.exercisepdf.banksystem.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
-import com.exercisepdf.banksystem.model.exceptions.AccountAlreadyAddedException;
-import com.exercisepdf.banksystem.model.exceptions.AccountNotFoundException;
 import com.exercisepdf.banksystem.model.exceptions.WithdrawException;
 
 public abstract class Client implements Serializable {
@@ -25,22 +23,22 @@ public abstract class Client implements Serializable {
         this.accounts = new ArrayList<>();
     }
 
-    public void addAccount(Account account) throws AccountAlreadyAddedException {
+    public void addAccount(Account account){
         if(accounts.contains(account)){
-            throw new AccountAlreadyAddedException(id);
+            Logger.log(id, "Account already exists - id: " + account.getId());
         } else {
             this.accounts.add(account);
-            Logger.log(new Log(this.id, String.format("client update - added account %d to accounts", account.getId()), 0f));
+            Logger.log(id, "Added account id: " + account.getId());
         }
     }
 
-    public void removeAccount(Account account) throws AccountNotFoundException {
+    public void removeAccount(Account account) {
         if(accounts.contains(account)){
             balance += account.getBalance();
             accounts.remove(account);
-            Logger.log(new Log(id, String.format("client update - removed account %d from accounts", account.getId()), 0f));
+            Logger.log(id, "Removed account id: " + account.getId());
         } else {
-            throw new AccountNotFoundException(id);
+            Logger.log(id, "Account not found - id: " + account.getId());
         }
     }
 

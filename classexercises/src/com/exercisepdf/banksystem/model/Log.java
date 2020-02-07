@@ -1,5 +1,6 @@
 package com.exercisepdf.banksystem.model;
 
+import java.text.DecimalFormat;
 import java.util.Objects;
 import java.util.Date;
 
@@ -16,10 +17,11 @@ public class Log {
         this.amount = amount;
     }
 
-
     @Override
     public String toString(){
-        return String.format("%s, client-%d, %s, %f", this.timesStamp, this.clientId, this.description, this.amount);
+        String client = (clientId.equals(0)) ? "bank" : String.format("client-%d", clientId);
+        String formatAmount = new DecimalFormat("#.###########").format(amount);
+        return String.format("%s - %s - %s - (cost: %s)", timesStamp, client, description, formatAmount);
     }
 
     @Override

@@ -10,7 +10,20 @@ public class Logger {
         this.driverName = driverName;
     }
 
-    public static void log(Log log){
+    public static void log(int clientId, String message, float amount){
+        Log log = new Log(clientId, message, amount);
+        logs.add(log);
+        System.out.println(log);
+    }
+
+    public static void log(int clientId, String message){
+        Log log = new Log(clientId, message, 0f);
+        logs.add(log);
+        System.out.println(log);
+    }
+
+    public static void log(String message){
+        Log log = new Log(0, message, 0f);
         logs.add(log);
         System.out.println(log);
     }

@@ -1,6 +1,5 @@
 package com.exercisepdf.banksystem.model;
 
-import com.exercisepdf.banksystem.model.exceptions.ClientAlreadyAddedException;
 import com.exercisepdf.banksystem.model.exceptions.ClientNotFoundException;
 
 import java.io.FileInputStream;
@@ -19,7 +18,7 @@ public class Bank {
         try{
             load();
         } catch (Exception ex){
-            Logger.log(new Log(0, "bank [load] - unable to load state from bank.data", 0f));
+            Logger.log("Unable to load state from bank.data");
             this.clients = new ArrayList<>();
         }
     }
@@ -43,13 +42,24 @@ public class Bank {
         return grandTotal + totalCommissons;
     }
 
-    public void addClient(Client client) throws ClientAlreadyAddedException {
+    public <T extends Client> void addClient(T client){
         int id = client.getId();
         if(clients.contains(client)){
-            throw new ClientAlreadyAddedException(id);
+            Logger.log("Client already exists - id: " + id);
+        } else {
+            this.clients.add(client);
+            Logger.log("Added client id: " + id);
         }
-        this.clients.add(client);
-        Logger.log(new Log(id, String.format("bank [add] - added client %d", id), 0f));
+    }
+
+    public void removeClient(Client client){
+        int id = client.getId();
+        if(clients.contains(client)){
+            clients.remove(client);
+            Logger.log(id, "Removed client id: " + id);
+        } else {
+            Logger.log(id, "Account not found - id: " + id);
+        }
     }
 
     public void store(){
@@ -58,7 +68,7 @@ public class Bank {
             ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
             objOut.writeObject(this.clients);
             objOut.close();
-            Logger.log(new Log(0, "bank [save] - saved state to bank.data", 0f));
+            Logger.log("Saved state to bank.data");
         } catch(Exception ex){
             ex.printStackTrace();
         }
@@ -67,19 +77,13 @@ public class Bank {
     private void load() throws Exception{
         FileInputStream fileIn = new FileInputStream("bank.data");
         ObjectInputStream objIn = new ObjectInputStream(fileIn);
-        this.clients = (ArrayList<Client>) objIn.readObject();
-        Logger.log(new Log(0, "bank [load] - loaded bank state from bank.data", 0f));
+        clients = (ArrayList<Client>) objIn.readObject();
+        Logger.log("Loaded bank state from bank.data");
         objIn.close();
     }
 
-    public void removeClient(Client client){
-        int id = client.getId();
-        clients.remove(client);
-        Logger.log(new Log(id, String.format("bank [remove] - removed client %d", id), 0f));
-    }
-
     private Client getClient(int id) throws ClientNotFoundException{
-        for(Client cli: this.clients){
+        for(Client cli: clients){
             if(cli.getId() == id){
                 return cli;
             }
