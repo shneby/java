@@ -70,7 +70,8 @@ public abstract class Client implements Serializable {
 
     public void autoUpdateAccounts(){
         for(Account acc: accounts){
-            acc.setBalance(acc.getBalance() * interestRate);
+            float curBalance = acc.getBalance();
+            acc.setBalance(curBalance + curBalance * interestRate);
         }
     }
 

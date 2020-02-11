@@ -2,36 +2,22 @@ package com.person;
 
 import java.util.Objects;
 
+@CopyRights("God")
 public class Person {
-    private String name;
-    private long age;
-    private long id;
-    private static int number = 0;
 
-    public Person(String name, long age, long id){
+    @NotNull private String name;
+    private long age;
+
+    public Person(String name, long age){
         this.name = name;
         this.age = age;
-        this.id = id;
-        number += 1;
     }
-
-    public static int getNumber() {
-        return number;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
 
     @Override
     public String toString() {
         return "Person{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
-                ", id=" + id +
-                ", number=" + number +
                 '}';
     }
 
@@ -40,7 +26,13 @@ public class Person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return id == person.id;
+        return age == person.age &&
+                Objects.equals(name, person.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age);
     }
 
     public String getName() {
@@ -57,13 +49,5 @@ public class Person {
 
     public void setAge(long age) {
         this.age = age;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 }

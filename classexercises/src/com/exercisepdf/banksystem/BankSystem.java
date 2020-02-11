@@ -7,9 +7,10 @@ public class BankSystem {
         Bank bank = Bank.getBankInstance();
         Account acc = new Account(1, 1500f);
         Client cli = new Regular(1, "omri", 0f);
+
         cli.addAccount(acc);
         bank.addClient(cli);
+        System.out.println(bank.getBalance());
         bank.store();
-
     }
 }

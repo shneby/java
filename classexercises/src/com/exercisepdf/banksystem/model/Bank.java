@@ -7,16 +7,18 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Bank {
     private static Bank instance;
     private static Float totalCommissons = 0f;
-    private ArrayList<Client> clients;
+    private List<Client> clients;
 
     private Bank(){
         try{
             load();
+            startAccountUpdater();
         } catch (Exception ex){
             Logger.log("Unable to load state from bank.data");
             this.clients = new ArrayList<>();
@@ -91,7 +93,7 @@ public class Bank {
         throw new ClientNotFoundException(id);
     }
 
-    public ArrayList<Client> getClients(){
+    public List<Client> getClients(){
         return this.clients;
     }
 
@@ -99,6 +101,10 @@ public class Bank {
         for(Client client: this.clients){
             System.out.println(client);
         }
+    }
+
+    private void startAccountUpdater(){
+
     }
 
     @Override
@@ -122,5 +128,4 @@ public class Bank {
     }
 
     // todo: implement viewLogs() function when time comes
-    // todo: implement startAccountUpdater() function when time comes
 }

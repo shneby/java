@@ -1,24 +1,16 @@
 package com.person;
 
-import java.util.Random;
+import java.lang.annotation.Annotation;
 
 public class PersonApp {
 
     public static void main(String[] args) {
-        Person omri = new Person("Omri", 32, 1);
-        Person efrat = new Person("Efrat", 32, 2);
-        Random r = new Random();
-
-        System.out.println(omri);
-        System.out.println(efrat);
-
-        System.out.println(omri.equals(efrat));
-
-        System.out.println("Waiting for efrat to equal omri");
-        while(!omri.equals(efrat)){
-            efrat = new Person("Efrat", 32, r.nextInt(101));
-            System.out.println(efrat.toString());
+        Person person = new Person("Omri", 32);
+        Annotation[] annotations = person.getClass().getAnnotations();
+        for(Annotation annotation: annotations){
+            CopyRights copyRights = (CopyRights)annotation;
+            System.out.println(copyRights.value());
         }
-        System.out.println("Efrat equals to omri");
     }
+
 }
