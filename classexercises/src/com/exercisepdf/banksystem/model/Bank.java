@@ -79,7 +79,7 @@ public class Bank {
     private void load() throws Exception{
         FileInputStream fileIn = new FileInputStream("bank.data");
         ObjectInputStream objIn = new ObjectInputStream(fileIn);
-        clients = (ArrayList<Client>) objIn.readObject();
+        clients = (List<Client>) objIn.readObject();
         Logger.log("Loaded bank state from bank.data");
         objIn.close();
     }
