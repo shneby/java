@@ -2,11 +2,9 @@ package oop;
 
 import oop.model.*;
 
-
 public class SchoolStatistics {
     public static void main(String[] args) {
         School school = generateRandomSchool();
-
         System.out.println("Task 1: Per school average:");
         System.out.println("**********************");
         System.out.println("School avg: " + getScoolAvg(school));
@@ -57,8 +55,6 @@ public class SchoolStatistics {
         System.out.println("**********************");
         printSportsTeam(school);
         System.out.println("**********************\n");
-
-
     }
 
     // Statistics Methods
@@ -172,7 +168,6 @@ public class SchoolStatistics {
         }
     }
 
-
     // Helper Methods
     public static String[] getSchoolProfessions(School school){
         String[] professions = new String[0];
@@ -260,7 +255,7 @@ public class SchoolStatistics {
         int index=0;
 
         while(index<randomClassRooms.length){
-            ClassRoom randomClassRoom = generateRandomClassRoom(""+1);
+            ClassRoom randomClassRoom = generateRandomClassRoom(""+index);
             boolean classRoomAlreadyExists = false;
             for(int j=0; !classRoomAlreadyExists && j<randomClassRooms.length; j++){
                 if(randomClassRooms[j] != null && randomClassRooms[j].getTeacher().getProfession().equals(randomClassRoom.getTeacher().getProfession())){
