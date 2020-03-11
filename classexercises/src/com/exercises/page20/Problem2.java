@@ -8,7 +8,7 @@ public class Problem2 {
         System.out.println(evaluate(v.genInt(0, 100)));
     }
     private static String evaluate(int grade){
-        System.out.println("Grade: " + grade);
+        System.out.println("SchoolClass: " + grade);
         if(grade >= 95){
             return "Excellent";
         } else if (grade >= 85){

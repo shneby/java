@@ -43,7 +43,7 @@ public class Grade {
 
     @Override
     public String toString() {
-        return "Grade{" +
+        return "SchoolClass{" +
                 "profession='" + profession + '\'' +
                 ", score=" + score +
                 '}';
