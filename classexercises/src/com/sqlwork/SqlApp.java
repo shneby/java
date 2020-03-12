@@ -16,7 +16,7 @@ public class SqlApp {
             ResultSet resultSet = stmt.executeQuery("SELECT * from employees");
 
             while(resultSet.next()){
-                System.out.println(resultSet.getString("name"));
+                System.out.println(resultSet.getString("lastName"));
             }
 
         } catch (SQLException e) {
